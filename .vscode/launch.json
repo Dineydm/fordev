@@ -11,22 +11,24 @@
             "program": "./test/"
         },
         {
-            "name": "fordev",
+            "name": "ForDev",
             "request": "launch",
             "type": "dart",
             "program": "./lib/main/main.dart"
         },
         {
-            "name": "fordev (profile mode)",
+            "name": "ForDev (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "program": "./lib/main/main.dart"
         },
         {
-            "name": "fordev (release mode)",
+            "name": "ForDev (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "program": "./lib/main/main.dart"
         }
     ]
 }
