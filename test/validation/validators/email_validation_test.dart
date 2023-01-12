@@ -1,7 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:test/test.dart';
 
-import 'package:ForDev/domain/helpers/helpers.dart';
+import 'package:ForDev/presentation/protocols/protocols.dart';
 
 import 'package:ForDev/validation/validators/validators.dart';
 
@@ -26,6 +26,6 @@ void main() {
 
   test('Should return error if email is invalid', () {
     expect(sut.validate(faker.internet.email().replaceAll('@', '')),
-        FieldError.invalidField.description);
+        ValidationError.invalidField);
   });
 }
