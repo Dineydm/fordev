@@ -30,7 +30,6 @@ class StreamLoginPresenter implements LoginPresenter {
   final Authentication authentication;
 
   var _controller = StreamController<LoginState>.broadcast();
-
   var _state = LoginState();
 
   Stream<String> get emailErrorStream =>

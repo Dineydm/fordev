@@ -61,7 +61,7 @@ void main() {
     final loginPage = GetMaterialApp(
       initialRoute: '/login',
       getPages: [
-        GetPage(name: '/login', page: () => LoginPage(presenter)),
+        GetPage(name: '/login', page: () => LoginPage(presenter: presenter)),
         GetPage(
           name: '/any_route',
           page: () => Scaffold(
