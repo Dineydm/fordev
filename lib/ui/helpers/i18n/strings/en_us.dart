@@ -7,8 +7,10 @@ class EnUs implements Translations {
   String get msgDefaultError => 'Something wrong happened. Try again soon.';
 
   String get addAccount => 'Add account';
+  String get confirmPassword => 'Confirm password';
   String get email => 'Email';
   String get enter => 'Enter';
   String get login => 'Login';
+  String get name => 'Name';
   String get password => 'Password';
 }

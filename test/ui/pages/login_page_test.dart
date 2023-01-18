@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:ForDev/ui/helpers/errors/errors.dart';
+import 'package:ForDev/ui/helpers/helpers.dart';
 import 'package:ForDev/ui/pages/pages.dart';
 
 class LoginPresenterSpy extends Mock implements LoginPresenter {}
@@ -83,7 +83,8 @@ void main() {
     await loadPage(tester);
 
     final emailTextChildren = find.descendant(
-        of: find.bySemanticsLabel('Email'), matching: find.byType(Text));
+        of: find.bySemanticsLabel(R.strings.email),
+        matching: find.byType(Text));
     expect(
       emailTextChildren,
       findsOneWidget,
@@ -92,7 +93,8 @@ void main() {
     );
 
     final passwordTextChildren = find.descendant(
-        of: find.bySemanticsLabel('Senha'), matching: find.byType(Text));
+        of: find.bySemanticsLabel(R.strings.password),
+        matching: find.byType(Text));
     expect(
       passwordTextChildren,
       findsOneWidget,
@@ -110,11 +112,11 @@ void main() {
     await loadPage(tester);
 
     final email = faker.internet.email();
-    await tester.enterText(find.bySemanticsLabel('Email'), email);
+    await tester.enterText(find.bySemanticsLabel(R.strings.email), email);
     verify(presenter.validateEmail(email));
 
     final password = faker.internet.password();
-    await tester.enterText(find.bySemanticsLabel('Senha'), password);
+    await tester.enterText(find.bySemanticsLabel(R.strings.password), password);
     verify(presenter.validatePassword(password));
   });
 
@@ -147,7 +149,8 @@ void main() {
 
     expect(
       find.descendant(
-          of: find.bySemanticsLabel('Email'), matching: find.byType(Text)),
+          of: find.bySemanticsLabel(R.strings.email),
+          matching: find.byType(Text)),
       findsOneWidget,
     );
   });
@@ -171,7 +174,8 @@ void main() {
 
     expect(
       find.descendant(
-          of: find.bySemanticsLabel('Senha'), matching: find.byType(Text)),
+          of: find.bySemanticsLabel(R.strings.password),
+          matching: find.byType(Text)),
       findsOneWidget,
     );
   });

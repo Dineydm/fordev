@@ -8,8 +8,10 @@ class PtBr implements Translations {
       'Algo errado aconteceu. Tente novamente em breve.';
 
   String get addAccount => 'Criar conta';
+  String get confirmPassword => 'Confirmar senha';
   String get email => 'E-mail';
   String get enter => 'Entrar';
   String get login => 'Login';
+  String get name => 'Nome';
   String get password => 'Senha';
 }
