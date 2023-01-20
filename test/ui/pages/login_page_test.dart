@@ -65,9 +65,7 @@ void main() {
         GetPage(name: '/login', page: () => LoginPage(presenter: presenter)),
         GetPage(
           name: '/any_route',
-          page: () => Scaffold(
-            body: Text('Fake page'),
-          ),
+          page: () => Scaffold(body: Text('Fake page')),
         ),
       ],
     );
