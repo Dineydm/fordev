@@ -131,6 +131,27 @@ void main() {
     verify(presenter.validatePasswordConfirmation(password));
   });
 
+  testWidgets('Should present name error', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    nameErrorController.add(UIError.invalidField);
+    await tester.pump();
+    expect(find.text(UIError.invalidField.description), findsOneWidget);
+
+    nameErrorController.add(UIError.requiredField);
+    await tester.pump();
+    expect(find.text(UIError.requiredField.description), findsOneWidget);
+
+    nameErrorController.add(null);
+    await tester.pump();
+    expect(
+      find.descendant(
+          of: find.bySemanticsLabel(R.strings.name),
+          matching: find.byType(Text)),
+      findsOneWidget,
+    );
+  });
+
   testWidgets('Should present email error', (WidgetTester tester) async {
     await loadPage(tester);
 
@@ -147,6 +168,27 @@ void main() {
     expect(
       find.descendant(
           of: find.bySemanticsLabel(R.strings.email),
+          matching: find.byType(Text)),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('Should present password error', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    passwordErrorController.add(UIError.invalidField);
+    await tester.pump();
+    expect(find.text(UIError.invalidField.description), findsOneWidget);
+
+    passwordErrorController.add(UIError.requiredField);
+    await tester.pump();
+    expect(find.text(UIError.requiredField.description), findsOneWidget);
+
+    passwordErrorController.add(null);
+    await tester.pump();
+    expect(
+      find.descendant(
+          of: find.bySemanticsLabel(R.strings.password),
           matching: find.byType(Text)),
       findsOneWidget,
     );
