@@ -1,11 +1,12 @@
 import './translations.dart';
 
 class PtBr implements Translations {
-  String get msgRequiredField => 'Campo obrigatório';
-  String get msgInvalidField => 'Campo inválido';
-  String get msgInvalidCredentials => 'Credenciais inválidas.';
   String get msgDefaultError =>
       'Algo errado aconteceu. Tente novamente em breve.';
+  String get msgEmailInUse => 'O e-mail já está em uso.';
+  String get msgInvalidCredentials => 'Credenciais inválidas.';
+  String get msgInvalidField => 'Campo inválido';
+  String get msgRequiredField => 'Campo obrigatório';
 
   String get addAccount => 'Criar conta';
   String get confirmPassword => 'Confirmar senha';
