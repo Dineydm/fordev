@@ -22,7 +22,7 @@ void showLoading(BuildContext context) {
   );
 }
 
-void hidLoading(BuildContext context) {
+void hideLoading(BuildContext context) {
   if (Navigator.canPop(context)) {
     Navigator.of(context).pop();
   }

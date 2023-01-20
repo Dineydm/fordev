@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
             if (isLoading) {
               showLoading(context);
             } else {
-              hidLoading(context);
+              hideLoading(context);
             }
           });
 
