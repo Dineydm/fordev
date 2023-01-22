@@ -6,11 +6,11 @@
 3. ✅ Notificar o emailErrorStream com null, caso o Validation não retorne erro
 4. ✅ Não notificar o emailErrorStream se o valor for igual ao último
 5. ✅ Notificar o isFormValidStream se o valor for igual ao último
-6. Chamar Validation ao alterar a senha
-7. Notificar o passwordErrorStream com o memso erro do Validation, caso retorne erro
-8. Notificar o passwordErrorStream com null, caso o validation não retorne erro
-9. Não notificar o passwordErrorStream se o valor for igual ao último
-10. Notificar o isFormValidStream após alterar a senha
+6. ✅ Chamar Validation ao alterar a senha
+7. ✅ Notificar o passwordErrorStream com o memso erro do Validation, caso retorne erro
+8. ✅ Notificar o passwordErrorStream com null, caso o validation não retorne erro
+9. ✅ Não notificar o passwordErrorStream se o valor for igual ao último
+10. ✅ Notificar o isFormValidStream após alterar a senha
 11. ✅ Chamar Validation ao altear o nome
 12. ✅ Notificar o nameErrorStream com o mesmo ero do Validation, caso retorne erro
 13. ✅ Notificar o nameErrorStream com null, caso o Validation não retorne erro
@@ -26,3 +26,6 @@
 23. Chamar o AddAccount com valores corretos
 24. Notificar o isLoadingStream com true antes de chamar o AddAccount
 25. Notificar o isLoadingStream com false no fim do AddAccount
+26. Notificar o mainErrorStream caso o AddAccount retorne erro
+27. Fechar todos os Streams no dispose
+28. Gravar o Account no cache em caso de sucesso
