@@ -16,15 +16,15 @@ class GetxLoginPresenter extends GetxController implements LoginPresenter {
   final Validation validation;
   final SaveCurrentAccount saveCurrentAccount;
 
+  final _emailError = Rx<UIError>();
+  final _passwordError = Rx<UIError>();
+  final _mainError = Rx<UIError>();
+  final _navigateTo = RxString();
+  final _isFormValid = false.obs;
+  final _isLoading = false.obs;
+
   String _email;
   String _password;
-
-  var _emailError = Rx<UIError>();
-  var _passwordError = Rx<UIError>();
-  var _mainError = Rx<UIError>();
-  var _navigateTo = RxString();
-  var _isFormValid = false.obs;
-  var _isLoading = false.obs;
 
   Stream<UIError> get emailErrorStream => _emailError.stream;
   Stream<UIError> get passwordErrorStream => _passwordError.stream;
@@ -82,7 +82,7 @@ class GetxLoginPresenter extends GetxController implements LoginPresenter {
       await saveCurrentAccount.save(account);
       _navigateTo.value = '/surveys';
     } on DomainError catch (_) {
-      final account = AccountEntity(faker.guid.guid());
+      final account = AccountEntity(token: faker.guid.guid());
       await saveCurrentAccount.save(account);
       _navigateTo.value = '/surveys';
 

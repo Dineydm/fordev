@@ -4,18 +4,25 @@ import 'package:test/test.dart';
 
 import 'package:ForDev/ui/helpers/errors/errors.dart';
 
+import 'package:ForDev/domain/entities/entities.dart';
+import 'package:ForDev/domain/usecases/usecases.dart';
+
 import 'package:ForDev/presentation/presenters/presenters.dart';
 import 'package:ForDev/presentation/protocols/validation.dart';
+
+class AddAccountSpy extends Mock implements AddAccount {}
 
 class ValidationSpy extends Mock implements Validation {}
 
 void main() {
   GetxSignUpPresenter sut;
+  AddAccountSpy addAccount;
   ValidationSpy validation;
   String name;
   String email;
   String password;
   String passwordConfirmation;
+  String token;
 
   PostExpectation mockValidationCall(String field) => when(validation.validate(
       field: field == null ? anyNamed('field') : field,
@@ -25,16 +32,26 @@ void main() {
     mockValidationCall(field).thenReturn(value);
   }
 
+  PostExpectation mockAddAccountCall() => when(addAccount.add(any));
+
+  void mockAddAccount() {
+    mockAddAccountCall().thenAnswer((_) async => AccountEntity(token: token));
+  }
+
   setUp(() {
+    addAccount = AddAccountSpy();
     validation = ValidationSpy();
     sut = GetxSignUpPresenter(
+      addAccount: addAccount,
       validation: validation,
     );
     name = faker.person.name();
     email = faker.internet.email();
     password = faker.internet.password();
     passwordConfirmation = password;
+    token = faker.guid.guid();
     mockValidation();
+    mockAddAccount();
   });
 
   test('Should call Validation with correct name', () {
@@ -207,5 +224,23 @@ void main() {
     await Future.delayed(Duration.zero);
     sut.validatePasswordConfirmation(passwordConfirmation);
     await Future.delayed(Duration.zero);
+  });
+
+  test('Should call AddAccount with correct values', () async {
+    sut.validateName(name);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
+
+    await sut.signUp();
+
+    verify(addAccount.add(
+      AddAccountParams(
+        name: name,
+        email: email,
+        password: password,
+        passwordConfirmation: passwordConfirmation,
+      ),
+    )).called(1);
   });
 }
