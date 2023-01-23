@@ -1,5 +1,5 @@
 import 'package:faker/faker.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
 import '../../ui/pages/pages.dart';
