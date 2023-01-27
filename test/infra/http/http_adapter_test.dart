@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:faker/faker.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
@@ -181,6 +183,20 @@ void main() {
           'accept': 'application/json',
         },
       ));
+    });
+
+    test('Should return data if get returns 200', () async {
+      final response = await sut.request(url: url, method: 'get');
+
+      expect(response, {'any_key': 'any_value'});
+    });
+
+    test('Should return null if get returns 200 with no data', () async {
+      mockResponse(200, body: '');
+
+      final response = await sut.request(url: url, method: 'get');
+
+      expect(response, null);
     });
   });
 }
