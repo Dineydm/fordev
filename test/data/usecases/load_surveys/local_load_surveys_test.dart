@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -204,6 +206,11 @@ void main() {
     LocalLoadSurveys sut;
     List<SurveyEntity> surveys;
 
+    PostExpectation mockSaveCall() =>
+        when(cacheStorage.save(key: anyNamed('key'), value: anyNamed('value')));
+
+    void mockSaveError() => mockSaveCall().thenThrow(Exception());
+
     List<SurveyEntity> mockSurvyes() => [
           SurveyEntity(
               id: faker.guid.guid(),
@@ -242,6 +249,14 @@ void main() {
       await sut.save(surveys);
 
       verify(cacheStorage.save(key: 'surveys', value: list)).called(1);
+    });
+
+    test('Should throw UnexpectedError if save thorws', () async {
+      mockSaveError();
+
+      final future = sut.save(surveys);
+
+      expect(future, throwsA(DomainError.unexpected));
     });
   });
 }
